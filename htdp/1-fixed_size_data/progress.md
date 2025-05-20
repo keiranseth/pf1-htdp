@@ -16,7 +16,7 @@
     -   2.2 Computing
     -   2.3 Composing Functions
     -   2.4 Global Constants
-    -   2.5 Progrms
+    -   2.5 Programs
 
 -   3 How to Design Programs
 
@@ -40,9 +40,9 @@
 
 -   5 Adding Structure
 
-    -   5.1 From Positions to posn Structures
-    -   5.2 Computing with posns
-    -   5.3 Programming with posn
+    -   5.1 From Positions to `posn` Structures
+    -   5.2 Computing with `posn`s
+    -   5.3 Programming with `posn`
     -   5.4 Defining Structure Types
     -   5.5 Computing with Structures
     -   5.6 Programming with Structures
@@ -50,7 +50,7 @@
     -   5.8 Designing with Structures
     -   5.9 Structure in the World
     -   5.10 A Graphical Editor
-    -   5.11 More Virtual Pts
+    -   5.11 More Virtual Pets
 
 -   6 Itemizations and Structures
 
@@ -58,6 +58,6 @@
     -   6.2 Mixing Up Worlds
     -   6.3 Input Errors
     -   6.4 Checking the World
-    -   6.5 Equality Predicaes
+    -   6.5 Equality Predicates
 
 -   7 Summary
