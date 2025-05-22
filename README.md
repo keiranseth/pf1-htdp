@@ -7,7 +7,7 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
 1. ~~HTDP - Preface (not needed but I read it so I put it here lmao)~~
 2. Introduction
     1. ~~HTDP - Prologue~~
-    2. HTC - 1a: Beginning Student Language
+    2. ~~HTC - 1a: Beginning Student Language~~
 3. [I. Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
     1. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
         1. [Arithmetic](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3abasic-arithmetic%29)
