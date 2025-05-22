@@ -1,6 +1,6 @@
 # PF1 - HTDP
 
-This is my proof of coursework for Programming Foundations 1 - Systematic Program Design, following the textbook: [How to Design Programs](https://htdp.org/).
+This is my proof of coursework for Programming Foundations 1 - Systematic Program Design, following the textbook: [How to Design Programs](https://htdp.org/) and the edX courses, [How to Code: Simple Data](https://www.edx.org/learn/coding/university-of-british-columbia-how-to-code-simple-data) and [How to Code: Complex Data](https://www.edx.org/learn/coding/university-of-british-columbia-how-to-code-complex-data).
 
 ## Progress
 
