@@ -4,9 +4,9 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
 
 ## Progress
 
-1. ~~HTDP - Preface (not needed but I read it so I put it here lmao)~~
+1. ~~HTDP - [Preface](https://htdp.org/2024-11-6/Book/part_preface.html) (not needed but I read it so I put it here lmao)~~
 2. Introduction
-    1. ~~HTDP - Prologue~~
+    1. ~~HTDP - [Prologue](https://htdp.org/2024-11-6/Book/part_prologue.html)~~
     2. ~~HTC - 1a: Beginning Student Language~~
 3. [I. Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
     1. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
