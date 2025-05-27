@@ -9,11 +9,11 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
     1. ~~HTDP - [Prologue](https://htdp.org/2024-11-6/Book/part_prologue.html)~~
     2. ~~HTC - 1a: Beginning Student Language~~
 3. [I. Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
-    1. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
+    1. ~~HTC - 1b: How to Design Functions~~
+    2. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
         1. [Arithmetic](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3abasic-arithmetic%29)
         2. [Functions and Programs](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3afuncs-progs%29)
         3. [How to Design Programs](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3ahtdp%29)
-    2. HTC - 1b: How to Design Functions
     3. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
         1. [Intervals, Enumerations, and Itemizations](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3aintervals-enums%29)
         2. [Adding Structure](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3astructure%29)
