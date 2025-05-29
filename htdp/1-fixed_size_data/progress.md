@@ -10,9 +10,9 @@
     -   ~~1.6 Mixing It Up with Booleans~~
     -   ~~1.7 Predicates: Know Thy Data~~
 
--   2 Functions and Programs
+-   ~~2 Functions and Programs~~
 
-    -   2.1 Functions
+    -   ~~2.1 Functions~~
     -   2.2 Computing
     -   2.3 Composing Functions
     -   2.4 Global Constants
