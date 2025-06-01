@@ -13,9 +13,9 @@
 -   ~~2 Functions and Programs~~
 
     -   ~~2.1 Functions~~
-    -   2.2 Computing
-    -   2.3 Composing Functions
-    -   2.4 Global Constants
+    -   ~~2.2 Computing~~
+    -   ~~2.3 Composing Functions~~
+    -   ~~2.4 Global Constants~~
     -   2.5 Programs
 
 -   3 How to Design Programs
