@@ -1,0 +1,23 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname ex038) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;Exercise 38. Design the function string-remove-last, which produces a string like the given one with the last character removed.
+
+;; String -> String
+;; Given a string, return the given with the last character removed.
+(check-expect (string-remove-last "") "")
+(check-expect (string-remove-last "A") "")
+(check-expect (string-remove-last "Hi") "H")
+(check-expect (string-remove-last "Sayonara") "Sayonar")
+
+;(define (string-remove-last str) "")
+#;
+(define (string-remove-last str)
+  (... str))
+
+(define (string-remove-last str)
+  (if (> (string-length str) 1)
+      (substring str
+                 0
+                 (sub1 (string-length str)))
+      ""))

@@ -16,13 +16,13 @@
     -   ~~2.2 Computing~~
     -   ~~2.3 Composing Functions~~
     -   ~~2.4 Global Constants~~
-    -   2.5 Programs
+    -   ~~2.5 Programs~~
 
 -   3 How to Design Programs
 
-    -   3.1 Designing Functions
-    -   3.2 Finger Exercises: Functions
-    -   3.3 Domain Knowledge
+    -   ~~3.1 Designing Functions~~
+    -   ~~3.2 Finger Exercises: Functions~~
+    -   ~~3.3 Domain Knowledge~~
     -   3.4 From Functions to Programs
     -   3.5 On Testing
     -   3.6 Designing World Programs

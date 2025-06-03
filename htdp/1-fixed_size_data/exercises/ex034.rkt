@@ -1,0 +1,18 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname ex034) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;Exercise 34. Design the function string-first, which extracts the first character from a non-empty string. Don’t worry about empty strings.
+
+
+;; String -> 1String
+;; Given a non-empty string, return the first character.
+(check-expect (string-first "hello") "h")
+(check-expect (string-first "Girliepop!") "G")
+
+;(define (string-first str) "a")
+#;
+(define (string-first str)
+  (... str))
+
+(define (string-first str)
+  (substring str 0 1))
