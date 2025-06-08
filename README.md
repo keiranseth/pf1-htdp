@@ -5,7 +5,7 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
 ## Progress
 
 1. ~~HTDP - [Preface](https://htdp.org/2024-11-6/Book/part_preface.html) (not needed but I read it so I put it here lmao)~~
-2. Introduction
+2. ~~Introduction~~
     1. ~~HTDP - [Prologue](https://htdp.org/2024-11-6/Book/part_prologue.html)~~
     2. ~~HTC - 1a: Beginning Student Language~~
 3. [I. Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
@@ -13,7 +13,7 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
     2. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
         1. ~~[Arithmetic](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3abasic-arithmetic%29)~~
         2. ~~[Functions and Programs](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3afuncs-progs%29)~~
-        3. [How to Design Programs](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3ahtdp%29)
+        3. ~~[How to Design Programs](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3ahtdp%29)~~
     3. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
         1. [Intervals, Enumerations, and Itemizations](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3aintervals-enums%29)
         2. [Adding Structure](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3astructure%29)
