@@ -1,11 +1,11 @@
 ;; The first three lines of this file were inserted by DrRacket. They record metadata
 ;; about the language level of this file in a form that our tools can easily process.
-#reader(lib "htdp-beginner-reader.ss" "lang")((modname ex055) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
-;Exercise 55. Take another look at show. It contains three instances of an expression with the approximate shape:
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname ex056) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;Exercise 56. Define main2 so that you can launch the rocket and watch it lift off. Read up on the on-tick clause to determine the length of one tick and how to change it.
 ;
-;    (place-image ROCKET 10 (- ... CENTER) BACKG)
-;
-;This expression appears three times in the function: twice to draw a resting rocket and once to draw a flying rocket. Define an auxiliary function that performs this work and thus shorten show. Why is this a good idea? You may wish to reread Prologue: How to Program.
+;If you watch the entire launch, you will notice that once the rocket reaches the top something curious happens. Explain. Add a stop-when clause to main2 so that the simulation of the liftoff stops gracefully when the rocket is out of sight. 
+
+
 
 (require 2htdp/universe)
 (require 2htdp/image)
