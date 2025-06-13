@@ -1,0 +1,6 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname ex054) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;Exercise 54. Why would it be incorrect to use (string=? "resting" x) as the first condition in show? Conversely, formulate a completely accurate condition, that is, a Boolean expression that evaluates to #true precisely when x belongs to the first sub-class of LRCD.
+
+; (string=? "resting" x) will produce an error if x holds the rest of the sub-classes of LRCD which are not the first. That is, if x was not the string "resting". This is because the other sub-classes are of data type Number.

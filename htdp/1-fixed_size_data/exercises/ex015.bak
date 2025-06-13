@@ -5,4 +5,4 @@
 
 (define (==> sunny friday)
   (or (false? sunny)
-      (not (false? friday)))) 
+      (not (false? friday))))

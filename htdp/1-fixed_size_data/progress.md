@@ -30,10 +30,10 @@
 
 -   4 Intervals, Enumerations, and Itemizations
 
-    -   4.1 Programming with Conditionals
-    -   4.2 Computing Conditionally
-    -   4.3 Enumerations
-    -   4.4 Intervals
+    -   ~~4.1 Programming with Conditionals~~
+    -   ~~4.2 Computing Conditionally~~
+    -   ~~4.3 Enumerations~~
+    -   ~~4.4 Intervals~~
     -   4.5 Itemizations
     -   4.6 Designing with Itemizations
     -   4.7 Finite State Words

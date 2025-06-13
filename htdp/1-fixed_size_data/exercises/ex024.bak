@@ -15,4 +15,4 @@
 (==> #true #false)
 (or (not #true) #false)
 (or #false #false)
-#false 
+#false
