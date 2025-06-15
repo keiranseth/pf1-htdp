@@ -15,14 +15,15 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
         2. ~~[Functions and Programs](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3afuncs-progs%29)~~
         3. ~~[How to Design Programs](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3ahtdp%29)~~
     3. ~~HTC - 2: How to Design Data~~
-    4. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
-        1. [Intervals, Enumerations, and Itemizations](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3aintervals-enums%29)
-        2. [Adding Structure](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3astructure%29)
-        3. [Itemizations and Structures](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3amix%29)
-        4. [Summary](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3asummary1%29)
+    4. ~~HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)~~
+        1. ~~[Intervals, Enumerations, and Itemizations](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3aintervals-enums%29)~~
     5. HTC
         1. 3a: How to Design Worlds
         2. 3b: Compound Data
+    6. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
+        1. [Adding Structure](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3astructure%29)
+        2. [Itemizations and Structures](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3amix%29)
+        3. [Summary](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3asummary1%29)
 4. [Intermezzo 1: Beginning Student Language](https://htdp.org/2024-11-6/Book/i1-2.html)
 5. [II. Arbitrarily Large Data](https://htdp.org/2024-11-6/Book/part_two.html#%28part._sec~3alist-produce%29)
     1. HTDP: [Arbitrarily Large Data](https://htdp.org/2024-11-6/Book/part_two.html#%28part._sec~3alist-produce%29)
