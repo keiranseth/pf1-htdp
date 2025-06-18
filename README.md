@@ -18,7 +18,7 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
     4. ~~HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)~~
         1. ~~[Intervals, Enumerations, and Itemizations](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3aintervals-enums%29)~~
     5. HTC
-        1. 3a: How to Design Worlds
+        1. ~~3a: How to Design Worlds~~
         2. 3b: Compound Data
     6. HTDP: [Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
         1. [Adding Structure](https://htdp.org/2024-11-6/Book/part_one.html#%28part._ch~3astructure%29)
