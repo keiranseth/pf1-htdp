@@ -36,7 +36,7 @@
     -   ~~4.4 Intervals~~
     -   ~~4.5 Itemizations~~
     -   ~~4.6 Designing with Itemizations~~
-    -   4.7 Finite State Words
+    -   ~~4.7 Finite State Words~~
 
 -   5 Adding Structure
 
