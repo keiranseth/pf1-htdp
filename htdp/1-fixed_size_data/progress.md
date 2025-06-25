@@ -28,7 +28,7 @@
     -   ~~3.6 Designing World Programs~~
     -   ~~3.7 Virtual Pet Words~~
 
--   4 Intervals, Enumerations, and Itemizations
+-   ~~4 Intervals, Enumerations, and Itemizations~~
 
     -   ~~4.1 Programming with Conditionals~~
     -   ~~4.2 Computing Conditionally~~
