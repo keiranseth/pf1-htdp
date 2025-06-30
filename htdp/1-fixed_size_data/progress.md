@@ -45,8 +45,8 @@
     -   ~~5.3 Programming with `posn`~~
     -   ~~5.4 Defining Structure Types~~
     -   ~~5.5 Computing with Structures~~
-    -   5.6 Programming with Structures
-    -   5.7 The Universe of Data
+    -   ~~5.6 Programming with Structures~~
+    -   ~~5.7 The Universe of Data~~
     -   5.8 Designing with Structures
     -   5.9 Structure in the World
     -   5.10 A Graphical Editor

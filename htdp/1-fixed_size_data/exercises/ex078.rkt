@@ -1,0 +1,17 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname ex078) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;Exercise 78. Provide a structure type and a data definition for representing three-letter words. A word consists of lowercase letters, represented with the 1Strings "a" through "z" plus #false. Note This exercise is a part of the design of a hangman game; see exercise 396.
+
+; 1StringGuess is one of:
+;   - 1String["a", "b", ..., "y", "z"]
+;   - #false
+; Interpretation. A one-character guess, or pre-cursor to the guess, in a Hangman game.
+
+(define-struct word (f s t))
+; Word is a structure:
+;     (make-word 1StringGuess 1StringGuess 1StringGuess)
+; Interpretation. A Word is a secret word in a game of Hangman, where
+;                  - f is the first secret letter,
+;                  - s is the second secret letter, and
+;                  - t is the third secret letter.
