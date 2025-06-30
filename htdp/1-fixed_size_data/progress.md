@@ -43,8 +43,8 @@
     -   ~~5.1 From Positions to `posn` Structures~~
     -   ~~5.2 Computing with `posn`s~~
     -   ~~5.3 Programming with `posn`~~
-    -   5.4 Defining Structure Types
-    -   5.5 Computing with Structures
+    -   ~~5.4 Defining Structure Types~~
+    -   ~~5.5 Computing with Structures~~
     -   5.6 Programming with Structures
     -   5.7 The Universe of Data
     -   5.8 Designing with Structures
