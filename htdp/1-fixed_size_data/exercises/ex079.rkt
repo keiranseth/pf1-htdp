@@ -63,6 +63,10 @@
 (define-struct person [fstname lstname male?])
 ; A Person is a structure:
 ;   (make-person String String Boolean)
+; Interpretation. (make-person fstname lstname male?) is a person, where
+;                   - fstname is the person's first name,
+;                   - lstname is the person's surname, and
+;                   - male? indicates whether the person is male or not male.
 (define RANDON (make-person "Randon" "Neuring" #true))
 (define P2 (make-person "Skurry" "Speedrunner" #false))
 
