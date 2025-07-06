@@ -14,4 +14,4 @@
 ; Interpretation. A Word is a secret word in a game of Hangman, where
 ;                  - f is the first secret letter,
 ;                  - s is the second secret letter, and
-;                  - t is the third secret letter.
+;                  - t is the third secret letter. 

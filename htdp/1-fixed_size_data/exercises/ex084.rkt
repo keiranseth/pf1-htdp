@@ -1,0 +1,133 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname ex084) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;Exercise 84. Design edit. The function consumes two inputs, an editor ed and a KeyEvent ke, and it produces another editor. Its task is to add a single-character KeyEvent ke to the end of the pre field of ed, unless ke denotes the backspace ("\b") key. In that case, it deletes the character immediately to the left of the cursor (if there are any). The function ignores the tab key ("\t") and the return key ("\r").
+;
+;The function pays attention to only two KeyEvents longer than one letter: "left" and "right". The left arrow moves the cursor one character to the left (if any), and the right arrow moves it one character to the right (if any). All other such KeyEvents are ignored.
+;
+;Develop a goodly number of examples for edit, paying attention to special cases. When we solved this exercise, we created 20 examples and turned all of them into tests.
+;
+;Hint Think of this function as consuming KeyEvents, a collection that is specified as an enumeration. It uses auxiliary functions to deal with the Editor structure. Keep a wish list handy; you will need to design additional functions for most of these auxiliary functions, such as string-first, string-rest, string-last, and string-remove-last. If you haven’t done so, solve the exercises in Functions.
+
+
+(require 2htdp/image)
+
+;; Constant and Data Definitions
+
+(define background (empty-scene 200 20))
+
+(define cursor (rectangle 1 20 "solid" "red"))
+
+(define text-size 11)
+(define text-color "black")
+
+
+(define-struct editor [pre post])
+; An Editor is a structure:
+;   (make-editor String String)
+; interpretation (make-editor s t) describes an editor
+; whose visible text is (string-append s t) with 
+; the cursor displayed between s and t
+#;
+(define (fn-for-editor e)
+  (... (editor-pre e) ...
+       ... (editor-post e) ...))
+
+
+
+;; Function Definitions
+
+;; Editor -> Image
+;; Render the text in the given one-line editor
+;; structure definition as an image.
+(check-expect (render (make-editor "hello" " world"))
+              (overlay/align "left" "center"
+                             (beside (text "hello" text-size text-color)
+                                     cursor
+                                     (text " world" text-size text-color))
+                             background))
+
+;(define (render e) background)
+
+;; Template from Editor
+
+(define (render e)
+  (overlay/align "left" "center"
+                 (beside (text (editor-pre e) text-size text-color)
+                         cursor
+                         (text (editor-post e) text-size text-color))
+                 background))
+
+
+;; Editor KeyEvent -> Editor
+;; Let the user input into the editor.
+;;   - "left" moves the cursor one character to the left,
+;;   - "right" moves the cursor one character to the right,
+;;   - "\b" erases the character to the left of cursor,
+;;   - 1-string such as letters, numbers, and punctuations are entered, and
+;;   - the rest are ignored.
+(check-expect (edit (make-editor "hello" " world") "\b")
+              (make-editor "hell" " world"))
+(check-expect (edit (make-editor "" " world") "\b")
+              (make-editor "" " world"))
+(check-expect (edit (make-editor "hello" " world") "left")
+              (make-editor "hell" "o world"))
+(check-expect (edit (make-editor "" " world") "left")
+              (make-editor "" " world"))
+(check-expect (edit (make-editor "hello" " world") "right")
+              (make-editor "hello " "world"))
+(check-expect (edit (make-editor "hello" "") "right")
+              (make-editor "hello" ""))
+(check-expect (edit (make-editor "hello" " world") "\t")
+              (make-editor "hello" " world"))
+(check-expect (edit (make-editor "hello" " world") "\r")
+              (make-editor "hello" " world"))
+(check-expect (edit (make-editor "hello" " world") "x")
+              (make-editor "hellox" " world"))
+(check-expect (edit (make-editor "hello" " world") "shift")
+              (make-editor "hello" " world"))
+
+;(define (edit e ke) e)
+
+#;
+(define (edit e ke)
+  (cond [(string=? ke "\b")
+         (... (editor-pre e) ...
+              ... (editor-post e) ...)]
+        [(string=? ke "left")
+         (... (editor-pre e) ...
+              ... (editor-post e) ...)]
+        [(string=? ke "right")
+         (... (editor-pre e) ...
+              ... (editor-post e) ...)]
+        [(= (string-length ke) 1)
+         (... (editor-pre e) ...
+              ... (editor-post e) ...)]
+        [else
+         (... (editor-pre e) ...
+              ... (editor-post e) ...)]))
+
+(define (edit e ke)
+  (cond [(string=? ke "\b")
+         (if (string=? (editor-pre e) "")
+             e
+             (make-editor (substring (editor-pre e) 0 (sub1 (string-length (editor-pre e))))
+                          (editor-post e)))]
+        [(string=? ke "left")
+         (if (string=? (editor-pre e) "")
+             e
+             (make-editor (substring (editor-pre e) 0 (sub1 (string-length (editor-pre e))))
+                          (string-append (substring (editor-pre e) (sub1 (string-length (editor-pre e))))
+                                         (editor-post e))))]
+        [(string=? ke "right")
+         (if (string=? (editor-post e) "")
+             e
+             (make-editor (string-append (editor-pre e)
+                                         (substring (editor-post e) 0 1))
+                          (substring (editor-post e) 1)))]
+        [(or (string=? ke "\t") (string=? ke "\r")) e]
+        [(= (string-length ke) 1)
+         (make-editor (string-append (editor-pre e) ke)
+                      (editor-post e))]
+        [else
+         e]))

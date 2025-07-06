@@ -9,3 +9,135 @@
 ;
 ;Note When you know enough, we will explain how to combine the gauge program with the solution of exercise 45. Then we will be able to help the cat because as long as you ignore it, it becomes less happy. If you pet the cat, it becomes happier. If you feed the cat, it becomes much, much happier. So you can see why you want to know a lot more about designing world programs than these first three chapters can tell you.
 
+
+(require 2htdp/image)
+(require 2htdp/universe)
+
+;; CONSTANT DEFINITIONS
+
+(define HEIGHT 240)
+(define WIDTH (* HEIGHT 16/9))
+(define BACKGROUND (empty-scene WIDTH HEIGHT "Cornsilk"))
+
+;(define HEIGHT 108)
+;(define WIDTH 40)
+;(define BACKGROUND (empty-scene WIDTH HEIGHT "Cornsilk"))
+
+
+(define GAUGE-WIDTH 32)
+(define GAUGE-MAXHEIGHT 100)
+(define GAP 4)
+(define GAUGEFRAME-WIDTH (+ GAUGE-WIDTH GAP))
+(define GAUGEFRAME-HEIGHT (+ GAUGE-MAXHEIGHT GAP))
+(define GAUGE-X (/ WIDTH 2))
+(define GAUGE-Y (/ HEIGHT 2))
+
+(define GAUGEFRAME (rectangle GAUGEFRAME-WIDTH
+                              GAUGEFRAME-HEIGHT
+                              "outline"
+                              "Black"))
+(define BACKGROUND-WFRAME
+  (place-image GAUGEFRAME
+               GAUGE-X GAUGE-Y
+               BACKGROUND))
+
+(define GAUGE-0Y
+  (+ GAUGE-Y (/ GAUGE-MAXHEIGHT 2)))
+
+
+;; DATA DEFINITIONS
+
+;; HappinessLevel is Number
+;; interpretation. hl is the level of hapiness between 0 and 100 (inclusive).
+
+
+
+;; FUNCTION DEFINITIONS
+
+(define (gauge-prog hl)
+  (big-bang hl
+    [on-tick deplete-hl]
+    [to-draw show-hl]
+    [on-key change-hl]))
+
+
+
+;; HappinessLevel -> HappinessLevel
+;; Given the HappinessLevel, decrease by 0.1.
+(check-expect (deplete-hl 0) 0)
+(check-expect (deplete-hl 4) 3.9)
+(check-expect (deplete-hl GAUGE-MAXHEIGHT) (- GAUGE-MAXHEIGHT 0.1))
+
+;(define (deplete-hl hl) 1)
+#;
+(define (deplete-hl hl)
+  (... hl))
+
+(define (deplete-hl hl)
+  (cond
+    [(zero? hl) 0]
+    [else (- hl 0.1)]))
+
+
+;; HappinessLevel -> Image
+;; Draw the HappinessLevel as a gauge on screen.
+(check-expect (show-hl 0)
+              (place-image/align (rectangle GAUGE-WIDTH 0
+                                            "solid" "Red")
+                                 GAUGE-X GAUGE-0Y
+                                 "center" "bottom"
+                                 BACKGROUND-WFRAME))
+(check-expect (show-hl 42.1)
+              (place-image/align (rectangle GAUGE-WIDTH 42.1
+                                            "solid" "Red")
+                                 GAUGE-X GAUGE-0Y
+                                 "center" "bottom"
+                                 BACKGROUND-WFRAME))
+(check-expect (show-hl GAUGE-MAXHEIGHT)
+              (place-image/align (rectangle GAUGE-WIDTH GAUGE-MAXHEIGHT
+                                            "solid" "Red")
+                                 GAUGE-X GAUGE-0Y
+                                 "center" "bottom"
+                                 BACKGROUND-WFRAME))
+
+;(define (show-hl hl) BACKGROUND-WFRAME)
+#;
+(define (show-hl hl)
+  (... hl))
+
+(define (show-hl hl)
+  (place-image/align (rectangle GAUGE-WIDTH hl
+                                "solid" "Red")
+                     GAUGE-X GAUGE-0Y
+                     "center" "bottom"
+                     BACKGROUND-WFRAME))
+
+
+;; HappinessLevel String -> HappinessLevel
+;; Increase hl by 1/3 if "up" is pressed, and
+;; decrease hl by 1/5 if "down" is pressed.
+;; If hl is already at 100 and "up" is pressed, stop increasing.
+;; If hl is already at 0 and "0" is pressed, stop decreasing.
+(check-expect (change-hl 50 "a") 50)
+(check-expect (change-hl 50 "up") (+ 50 1/3))
+(check-expect (change-hl 100 "up") (+ 50 1/3))
+(check-expect (change-hl 50 "down") (- 50 1/5))
+(check-expect (change-hl 0 "down") 0)
+
+;(define (change-hl hl ke) hl)
+#;
+(define (change-hl hl ke)
+  (cond
+    [(... ke) (... hl)]
+    ...))
+
+(define (change-hl hl ke)
+  (cond
+    [(string=? ke "up") (+ hl 1/3)]
+    [(and (> (- hl 1/5) 0)
+          (string=? ke "down")) (- hl 1/5)]
+    [else hl]))
+
+
+;; Program
+(gauge-prog GAUGE-MAXHEIGHT)

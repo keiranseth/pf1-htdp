@@ -44,6 +44,9 @@
 (define GAUGE-0Y
   (+ GAUGE-Y (/ GAUGE-MAXHEIGHT 2)))
 
+(define sub-hl 1/5)
+(define add-hl 1/3)
+
 
 ;; DATA DEFINITIONS
 
@@ -76,6 +79,7 @@
 (define (deplete-hl hl)
   (cond
     [(zero? hl) 0]
+    [(< (- hl 0.1) 0) 0]
     [else (- hl 0.1)]))
 
 
@@ -88,7 +92,7 @@
                                  "center" "bottom"
                                  BACKGROUND-WFRAME))
 (check-expect (show-hl 42.1)
-              (place-image/align (rectangle GAUGE-WIDTH 42.1
+              (place-image/align (rectangle GAUGE-WIDTH (round 42.1)
                                             "solid" "Red")
                                  GAUGE-X GAUGE-0Y
                                  "center" "bottom"
@@ -106,7 +110,7 @@
   (... hl))
 
 (define (show-hl hl)
-  (place-image/align (rectangle GAUGE-WIDTH hl
+  (place-image/align (rectangle GAUGE-WIDTH (round hl)
                                 "solid" "Red")
                      GAUGE-X GAUGE-0Y
                      "center" "bottom"
@@ -114,13 +118,17 @@
 
 
 ;; HappinessLevel String -> HappinessLevel
-;; Increase hl by 1/3 if "up" is pressed, and
+;; Increase hl by 1sub-hl if "up" is pressed, and
 ;; decrease hl by 1/5 if "down" is pressed.
+;; If hl is already at 100 and "up" is pressed, stop increasing.
+;; If hl is already at 0 and "0" is pressed, stop decreasing.
 (check-expect (change-hl 50 "a") 50)
-(check-expect (change-hl 50 "up") (+ 50 1/3))
-(check-expect (change-hl 50 "down") (- 50 1/5))
+(check-expect (change-hl 50 "up") (+ 50 add-hl))
+(check-expect (change-hl 100 "up") 100)
+(check-expect (change-hl 50 "down") (- 50 sub-hl))
 (check-expect (change-hl 0 "down") 0)
-
+(check-expect (change-hl -0.4 "down") 0)
+(check-expect (change-hl 100.6 "up") 100)
 ;(define (change-hl hl ke) hl)
 #;
 (define (change-hl hl ke)
@@ -130,9 +138,12 @@
 
 (define (change-hl hl ke)
   (cond
-    [(string=? ke "up") (+ hl 1/3)]
-    [(and (> (- hl 1/5) 0)
-          (string=? ke "down")) (- hl 1/5)]
+    [(and (< hl 100) (< (+ hl sub-hl) 100) (string=? ke "up")) (+ hl add-hl)]
+    [(and (> hl 0)
+          (> (- hl add-hl) 0)
+          (string=? ke "down")) (- hl sub-hl)]
+    [(< hl 0) 0]
+    [(> hl 100) 100]
     [else hl]))
 
 
