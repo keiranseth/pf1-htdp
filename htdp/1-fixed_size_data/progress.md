@@ -50,7 +50,7 @@
     -   ~~5.8 Designing with Structures~~
     -   ~~5.9 Structure in the World~~
     -   ~~5.10 A Graphical Editor~~
-    -   5.11 More Virtual Pets
+    -   ~~5.11 More Virtual Pets~~
 
 -   6 Itemizations and Structures
 
