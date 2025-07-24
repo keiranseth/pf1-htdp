@@ -14,8 +14,8 @@ The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 4. ~~3a: How to Design Worlds~~
 5. ~~3b: Compound Data~~
 6. ~~4a: Self-Reference~~
-7. 4b: Reference
-8. 5a: Naturals
+7. ~~4b: Reference~~
+8. ~~5a: Naturals~~
 9. 5b: Helpers
 10. 6: Binary Search Trees
 11. Project: Space Invaders
