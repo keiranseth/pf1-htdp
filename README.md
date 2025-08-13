@@ -16,8 +16,8 @@ The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 6. ~~4a: Self-Reference~~
 7. ~~4b: Reference~~
 8. ~~5a: Naturals~~
-9. 5b: Helpers
-10. 6: Binary Search Trees
+9. ~~5b: Helpers~~
+10. ~~6: Binary Search Trees~~
 11. Project: Space Invaders
 12. 7: Mutual Reference
 13. 8a: Two One-of Types
