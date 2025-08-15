@@ -4,6 +4,10 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
 
 The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 
+## Portfolio Project
+
+See [Pong](./htc/self-project_1-forest/pong.rkt).
+
 ## Progress
 
 ### HTC
@@ -18,7 +22,7 @@ The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 8. ~~5a: Naturals~~
 9. ~~5b: Helpers~~
 10. ~~6: Binary Search Trees~~
-11. Project: Space Invaders
+11. ~~Project: Space Invaders~~
 12. 7: Mutual Reference
 13. 8a: Two One-of Types
 14. 8b: Local
