@@ -6,23 +6,23 @@ The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 
 ## Portfolio Project
 
-See [Pong](./htc/self-project_1-forest/pong.rkt).
+See [Pong](./htc/self-project_1-forest/).
 
 ## Progress
 
 ### HTC
 
-1. ~~1a: Beginning Student Language~~
-2. ~~1b: How to Design Functions~~
-3. ~~2: How to Design Data~~
-4. ~~3a: How to Design Worlds~~
-5. ~~3b: Compound Data~~
-6. ~~4a: Self-Reference~~
-7. ~~4b: Reference~~
-8. ~~5a: Naturals~~
-9. ~~5b: Helpers~~
-10. ~~6: Binary Search Trees~~
-11. ~~Project: Space Invaders~~
+1. ~~[1a: Beginning Student Language](./htc/01a-bsl/)~~
+2. ~~[1b: How to Design Functions](./htc/01b-htdf/)~~
+3. ~~[2: How to Design Data](./htc/02-htdd/)~~
+4. ~~[3a: How to Design Worlds](./htc/03a-htdw/)~~
+5. ~~[3b: Compound Data](./htc/03b-compound_data/)~~
+6. ~~[4a: Self-Reference](./htc/04a-self_reference/)~~
+7. ~~[4b: Reference](./htc/04b-reference/)~~
+8. ~~[5a: Naturals](./htc/05a-naturals/)~~
+9. ~~[5b: Helpers](./htc/05b-helpers/)~~
+10. ~~[6: Binary Search Trees](./htc/06-bsts/)~~
+11. ~~[Project: Space Invaders](./htc/project_1-space_invaders/)~~
 12. 7: Mutual Reference
 13. 8a: Two One-of Types
 14. 8b: Local
