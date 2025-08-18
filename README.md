@@ -23,7 +23,7 @@ See [Pong](./htc/self-project_1-forest/).
 9. ~~[5b: Helpers](./htc/05b-helpers/)~~
 10. ~~[6: Binary Search Trees](./htc/06-bsts/)~~
 11. ~~[Project: Space Invaders](./htc/project_1-space_invaders/)~~
-12. 7: Mutual Reference
+12. ~~[7: Mutual Reference](./htc/07-mutual_reference/)~~
 13. 8a: Two One-of Types
 14. 8b: Local
 15. 9: Abstraction
