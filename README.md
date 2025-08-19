@@ -6,7 +6,7 @@ The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 
 ## Portfolio Project
 
-See [Pong](./htc/self-project_1-forest/).
+See [Pong](./htc/portfolio_project_1-pong/).
 
 ## Progress
 
