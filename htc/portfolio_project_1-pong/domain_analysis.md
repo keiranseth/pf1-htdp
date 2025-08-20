@@ -1,16 +1,18 @@
 # Pong
 
-This portfolio project is my attempt at recreating the game Pong with `BSL with list abbreviations` (a student programming language based on Racket).
+This portfolio project is my attempt at recreating the game Pong with `BSL` (a student programming language based on `Racket`).
+
+> Download and play the game [here](./pong.rkt).
 
 Learn more about the game [here](https://en.wikipedia.org/wiki/Pong) and [here](https://www.ponggame.org/).
 
 ## Description of Implementation
 
-My version of Pong accomodates only one user, which controls the in-game paddle on the left side of the screen. Whoever, the user or the computer, reaches 11 points first wins the game.
+My version of Pong accomodates only one user, which controls the in-game paddle on the left side of the screen. Whoever, the user or the computer, reaches 9 points first wins the game.
 
 The differences between this implementation and the classic Pong are:
 
--   The win condition is changed from 11 points to 9 points.
+-   The win condition is changed from 9 points to 9 points.
 -   The user cannot use physics to alter the speed and direction of the ball. Programming-wise, the in-game physics of my implementation does not take into account elastic/inelastic collisions.
 
 ## Domain Analysis
