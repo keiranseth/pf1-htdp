@@ -12,14 +12,16 @@ My version of Pong accomodates only one user, which controls the in-game paddle 
 
 The differences between this implementation and the classic Pong are:
 
--   The win condition is changed from 9 points to 9 points.
--   The user cannot use physics to alter the speed and direction of the ball. Programming-wise, the in-game physics of my implementation does not take into account elastic/inelastic collisions.
+-   The win condition is changed from 11 points to 9 points.
+-   This implementation of Pong does not take into account elastic/inelastic collisions. In other words, the paddles cannot use physics to alter the trajectory and momentum of the ball.
 
 ## Domain Analysis
 
 ![Visual Sketch](./sketch.png)
 
-## Constant Definitions
+## Rough Program Sketch
+
+### Constant Definitions
 
 DIVIDER
 
@@ -55,13 +57,13 @@ SCORE-COLOR\
 SCORE-XP\
 SCORE-YP
 
-## Game Elements
+### Game Elements
 
-### `y-position`
+#### `y-position`
 
 The position of a particle along the y-axis on screen, ranging from integers 0 to BG-HEIGHT.
 
-### `x-direction`
+#### `x-direction`
 
 A `x-direction` is the direction of movement along the x-axis, which is one of 2 cases:
 
@@ -70,7 +72,7 @@ A `x-direction` is the direction of movement along the x-axis, which is one of 2
 
 Interpretation. 1 means right-wards movement, -1 means left-wards movement.
 
-### `y-direction`
+#### `y-direction`
 
 A `y-direction` is the direction of movement along the y-axis, which is one of 2 cases:
 
@@ -79,18 +81,18 @@ A `y-direction` is the direction of movement along the y-axis, which is one of 2
 
 Interpretation. -1 means upwards movement, 1 means downwards movement.
 
-### `ball`
+#### `ball`
 
 The `ball` is the ball each player hits with their `paddle`.
 
 1. `xdir` is the ball's horizontal direction of movement, and
 2. `ydir` is the ball's vertical direction of movement.
 
-### `score`
+#### `score`
 
 A `score` is a `paddle`'s score in a game of Pong, ranging from integers 0 to 9.
 
-### `paddle`
+#### `paddle`
 
 A `paddle` is a player in a game of Pong, which contains the following attributes:
 
@@ -98,7 +100,7 @@ A `paddle` is a player in a game of Pong, which contains the following attribute
 1. `ydir` - the player's `direction` of movement, and
 1. `score` - the player's current `score`.
 
-### `game`
+#### `game`
 
 The `game` is the program's entire state, containing:
 
@@ -106,16 +108,16 @@ The `game` is the program's entire state, containing:
 2.  `enemy` - the `paddle` the computer controls, and
 3.  `ball` - the `ball` each `paddle` is trying to hit.
 
-## `big-bang` options
+### `big-bang` options
 
 -   `on-tick`
 -   `to-draw`
 -   `on-key`
 -   `stop-when`
 
-## Helper Functions
+### Helper Functions
 
-### `on-tick`
+#### `on-tick`
 
 This function will take care of the ball's movement, the enemy paddle's movement, and the paddles' scores.
 
@@ -131,7 +133,7 @@ This function will handle the enemy's movement and score.
 
 The function will handle the ball's movement.
 
-### `to-draw`
+#### `to-draw`
 
 This helper function renders all the game elements on screen.
 
@@ -139,10 +141,10 @@ This helper function renders all the game elements on screen.
 
 #### `render-paddles`
 
-### `on-key`
+#### `on-key`
 
 This helper function handles the user's key inputs and help the user control the user paddle.
 
-### `stop-when`
+#### `stop-when`
 
 This helper function keeps track of the two paddles' scores in every game's state. It should display an end-game message, indicating whether the user or the enemy won the game.
