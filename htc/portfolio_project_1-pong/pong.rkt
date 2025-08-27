@@ -7,6 +7,7 @@
 (require 2htdp/universe)
 (require racket/random)
 
+
 ;; Constant Definitions
 
 (define DVDR-COLOR "White")
@@ -47,12 +48,6 @@
                     (/ PADDLE-WIDTH 2)))
 (define ENEMY-HIT (- ENEMY-LINE
                      (/ PADDLE-WIDTH 2)))
-#;
-(place-image ENEMY-PADDLE
-             ENEMY-XP (/ BG-HEIGHT 2)
-             (place-image USER-PADDLE
-                          USER-XP (/ BG-HEIGHT 2)
-                          BACKGROUND))
 
 (define BALL-RADIUS (/ BG-WIDTH 80))
 (define BALL-COLOR "Gray")
@@ -60,7 +55,6 @@
 (define BALL-SPEED 11)
 (define S-BALL-X (/ BG-WIDTH 2))
 (define S-BALL-Y (/ BG-HEIGHT 2))
-
 
 (define SCORE-SIZE (/ BG-WIDTH 20))
 (define SCORE-COLOR "White")
@@ -83,21 +77,11 @@
 (define UPAD-SPEED (- BALL-SPEED 2))
 (define EPAD-SPEED (- BALL-SPEED 1))
 
-#;
-(place-image (text (string-append "10"
-                                  SCORE-DIVIDER
-                                  "10")
-                   SCORE-SIZE SCORE-COLOR)
-             SCORE-XP SCORE-YP
-             BACKGROUND)
-
 (define WIN-SCORE 9)
 
 
+
 ;; Data Definitions
-
-
-
 
 ;; Position is is a structure:
 ;;   (make-posn Integer[0, BG-WIDTH] Integer[0, BG-HEIGHT])
@@ -585,7 +569,6 @@
                         (make-dirn (random-ref (list -1 1))
                                    (random-ref (list -1 1))))))
 
-;; !!! set-score is broken, something about paddle-lost?
 ;; Game -> Game
 ;; Handle scoring after match end.
 (check-random (set-score (make-game (make-paddle (make-posn USER-LINE 450)
@@ -708,7 +691,6 @@
       (<= (posn-x (ball-posn b)) USER-LINE)))
 
 
-;; !!! render the player scores render-score
 ;; Game -> Image
 ;; Render all the game elements on screen.
 (check-expect (draw (make-game (make-paddle (make-posn USER-LINE YPOS-S)
