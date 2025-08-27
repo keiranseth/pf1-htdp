@@ -15,6 +15,19 @@ The differences between this implementation and the classic Pong are:
 -   The win condition is changed from 11 points to 9 points.
 -   This implementation of Pong does not take into account elastic/inelastic collisions. In other words, the paddles cannot use physics to alter the trajectory and momentum of the ball.
 
+## How to play the game?
+
+1. Download and install [Racket](https://racket-lang.org/).
+2. Set the language to `Beginning Student with List Abbreviations`.
+3. Run the program.
+4. In the interactions pane, enter `(simple-pong GAME-START)`.
+
+## Screenshots
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
 ## Domain Analysis
 
 ![Visual Sketch](./sketch.png)
