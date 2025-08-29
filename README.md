@@ -24,7 +24,7 @@ See [Pong](./htc/portfolio_project_1-pong/domain_analysis.md).
 10. ~~[6: Binary Search Trees](./htc/06-bsts/)~~
 11. ~~[Project: Space Invaders](./htc/project_1-space_invaders/)~~
 12. ~~[7: Mutual Reference](./htc/07-mutual_reference/)~~
-13. 8a: Two One-of Types
+13. ~~[8a: Two One-of Types](./htc/08a-two_one_of_types/)~~
 14. 8b: Local
 15. 9: Abstraction
 16. 10a: Generative Recursion
