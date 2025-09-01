@@ -201,7 +201,6 @@
   (big-bang g                  ; Game
     (on-tick tock)             ; Game -> Game
     (to-draw draw)             ; Game -> Image
-    ;(stop-when end?)           ; Game -> Boolean
     (on-key handle-inputs)))   ; Game KeyEvent -> Game
 
 
@@ -246,7 +245,6 @@
         [else (move-elements g)]))
 
 
-;(define-struct game (user enemy ball))
 ;; Game -> Boolean
 ;; Signals the win condition.
 (check-expect (end? (make-game (make-paddle (make-posn USER-LINE YPOS-S)
@@ -569,6 +567,7 @@
                         (make-dirn (random-ref (list -1 1))
                                    (random-ref (list -1 1))))))
 
+
 ;; Game -> Game
 ;; Handle scoring after match end.
 (check-random (set-score (make-game (make-paddle (make-posn USER-LINE 450)
@@ -604,6 +603,7 @@
              (reward-paddle (paddle-lost? (game-user g) (game-ball g))
                             (game-enemy g))
              (game-ball g)))
+
 
 ;; Boolean Paddle -> Paddle
 ;; Add one point to given paddle if they won (#true).
@@ -814,14 +814,12 @@
 
 ;; Game KeyEvent -> Game
 ;; Handle the key input that helps the user play.
-
 (define (handle-inputs g ke)
   (make-game (handle-user (game-user g) ke)
              (game-enemy g)
              (game-ball g)))
 
 
-;(define USER (make-paddle (make-posn USER-LINE YPOS-S) 0 0))
 ;; Paddle KeyEvent -> Paddle
 ;; Helps the user control the user paddle and play the game.
 (check-expect (handle-user (make-paddle (make-posn USER-LINE YPOS-S)

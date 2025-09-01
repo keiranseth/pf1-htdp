@@ -7,6 +7,7 @@
 (require 2htdp/universe)
 (require racket/random)
 
+
 ;; Constant Definitions
 
 (define DVDR-COLOR "White")
@@ -47,26 +48,24 @@
                     (/ PADDLE-WIDTH 2)))
 (define ENEMY-HIT (- ENEMY-LINE
                      (/ PADDLE-WIDTH 2)))
-#;
-(place-image ENEMY-PADDLE
-             ENEMY-XP (/ BG-HEIGHT 2)
-             (place-image USER-PADDLE
-                          USER-XP (/ BG-HEIGHT 2)
-                          BACKGROUND))
 
 (define BALL-RADIUS (/ BG-WIDTH 80))
 (define BALL-COLOR "Gray")
 (define BALL (circle BALL-RADIUS "solid" BALL-COLOR))
-(define BALL-SPEED 5)
+(define BALL-SPEED 11)
 (define S-BALL-X (/ BG-WIDTH 2))
 (define S-BALL-Y (/ BG-HEIGHT 2))
-
 
 (define SCORE-SIZE (/ BG-WIDTH 20))
 (define SCORE-COLOR "White")
 (define SCORE-XP (/ BG-WIDTH 2))
 (define SCORE-YP (/ BG-HEIGHT 4))
 (define SCORE-DIVIDER "    ")
+
+(define MSG-SIZE (+ SCORE-SIZE 4))
+(define MSG-COLOR "White")
+(define MSG-XP (/ BG-WIDTH 2))
+(define MSG-YP (+ (/ BG-HEIGHT 2) 100))
 
 (define XPOS-S (/ BG-WIDTH 2))
 (define YPOS-S (/ BG-HEIGHT 2))
@@ -75,23 +74,14 @@
 (define PADDLE-E (- BG-HEIGHT
                     (/ PADDLE-HEIGHT 2)))
 
-(define UPAD-SPEED (+ BALL-SPEED 1))
-(define EPAD-SPEED (+ UPAD-SPEED 2))
+(define UPAD-SPEED (- BALL-SPEED 2))
+(define EPAD-SPEED (- BALL-SPEED 1))
 
-#;
-(place-image (text (string-append "10"
-                                  SCORE-DIVIDER
-                                  "10")
-                   SCORE-SIZE SCORE-COLOR)
-             SCORE-XP SCORE-YP
-             BACKGROUND)
+(define WIN-SCORE 9)
 
 
 
 ;; Data Definitions
-
-
-
 
 ;; Position is is a structure:
 ;;   (make-posn Integer[0, BG-WIDTH] Integer[0, BG-HEIGHT])
@@ -211,7 +201,7 @@
   (big-bang g                  ; Game
     (on-tick tock)             ; Game -> Game
     (to-draw draw)             ; Game -> Image
-    (stop-when end?)           ; Game -> Boolean
+    ;(stop-when end?)           ; Game -> Boolean
     (on-key handle-inputs)))   ; Game KeyEvent -> Game
 
 
@@ -227,7 +217,7 @@
                                           (make-dirn 1 -1))))
               (make-game (make-paddle (make-posn USER-LINE (+ YPOS-S (* UPAD-SPEED -1)))
                                       -1 0)
-                         (make-paddle (make-posn ENEMY-LINE (+ YPOS-S (* EPAD-SPEED 1)))
+                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
                                       1 0)
                          (make-ball (make-posn (+ XPOS-S
                                                   (* BALL-SPEED 1))
@@ -251,14 +241,45 @@
 ;(define (tock g) g)
 
 (define (tock g)
-  (cond [(goal? (game-ball g)) (reset-match (set-score g))]
+  (cond [(end? g) g]
+        [(goal? (game-ball g)) (reset-match (set-score g))]
         [else (move-elements g)]))
 
 
-;; FOR move elements: make functions for
-;;    move-user - make the user move according to direction, limit by screen edges
-;;    move-enemy-ai = make the enemy follow the ball, limit by the screen edges
-;;    move-ball - make the ball move, limit by screen edges
+;(define-struct game (user enemy ball))
+;; Game -> Boolean
+;; Signals the win condition.
+(check-expect (end? (make-game (make-paddle (make-posn USER-LINE YPOS-S)
+                                            1
+                                            5)
+                               (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                            1
+                                            4)
+                               (make-ball (make-posn USER-LINE 50)
+                                          (make-dirn -1 -1)))) #false)
+(check-expect (end? (make-game (make-paddle (make-posn USER-LINE YPOS-S)
+                                            1
+                                            2)
+                               (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                            1
+                                            9)
+                               (make-ball (make-posn USER-LINE 50)
+                                          (make-dirn -1 -1)))) #true)
+(check-expect (end? (make-game (make-paddle (make-posn USER-LINE YPOS-S)
+                                            1
+                                            9)
+                               (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                            1
+                                            4)
+                               (make-ball (make-posn ENEMY-LINE 50)
+                                          (make-dirn 1 1)))) #true)
+
+;(define (end? g) #false)
+
+(define (end? g)
+  (or (= (paddle-score (game-user g)) 9)
+      (= (paddle-score (game-enemy g)) 9)))
+
 
 ;; Game -> Game
 ;; Handle the movement of all game elements.
@@ -270,7 +291,7 @@
                                                    (make-dirn 1 -1))))
               (make-game (make-paddle (make-posn USER-LINE (+ YPOS-S (* UPAD-SPEED -1)))
                                       -1 0)
-                         (make-paddle (make-posn ENEMY-LINE (+ YPOS-S (* EPAD-SPEED 1)))
+                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
                                       1 0)
                          (make-ball (make-posn (+ XPOS-S
                                                   (* BALL-SPEED 1))
@@ -281,60 +302,244 @@
 ;(define (move-elements g) g)
 
 (define (move-elements g)
-  (make-game (move-paddle (game-user g) UPAD-SPEED)
-             (move-paddle (game-enemy g) EPAD-SPEED)
-             (move-ball (game-ball g) (make-posn BALL-SPEED BALL-SPEED))))
+  (make-game (move-user (game-user g) UPAD-SPEED)
+             (move-enemy-ai (game-enemy g) (game-ball g) EPAD-SPEED)
+             (move-ball (game-ball g) (game-user g) (game-enemy g) (make-posn BALL-SPEED BALL-SPEED))))
 
 
 ;; Paddle Integer -> Paddle
 ;; Move paddle p by given integer s.
-(check-expect (move-paddle (make-paddle (make-posn USER-LINE YPOS-S)
-                                        -1 0)
-                           UPAD-SPEED)
+(check-expect (move-user (make-paddle (make-posn USER-LINE YPOS-S)
+                                      -1 0)
+                         UPAD-SPEED)
               (make-paddle (make-posn USER-LINE
                                       (+ YPOS-S (* UPAD-SPEED -1)))
                            -1 0))
-(check-expect (move-paddle (make-paddle (make-posn ENEMY-LINE YPOS-S)
-                                        1 0)
-                           EPAD-SPEED)
-              (make-paddle (make-posn ENEMY-LINE
-                                      (+ YPOS-S (* EPAD-SPEED 1)))
+(check-expect (move-user (make-paddle (make-posn USER-LINE 0)
+                                      -1 0)
+                         UPAD-SPEED)
+              (make-paddle (make-posn USER-LINE
+                                      (+ 0 (/ PADDLE-HEIGHT 2)))
+                           0 0))
+(check-expect (move-user (make-paddle (make-posn USER-LINE BG-HEIGHT)
+                                      -1 0)
+                         UPAD-SPEED)
+              (make-paddle (make-posn USER-LINE
+                                      (- BG-HEIGHT (/ PADDLE-HEIGHT 2)))
+                           0 0))
+
+;(define (move-user p s) p)
+
+(define (move-user p s)
+  (cond [(< (abs (- (posn-y (paddle-posn p))
+                    0))
+            (/ PADDLE-HEIGHT 2))
+         (make-paddle (make-posn (posn-x (paddle-posn p))
+                                 (+ 0 (/ PADDLE-HEIGHT 2)))
+                      0
+                      (paddle-score p))]
+        [(< (abs (- (posn-y (paddle-posn p))
+                    BG-HEIGHT))
+            (/ PADDLE-HEIGHT 2))
+         (make-paddle (make-posn (posn-x (paddle-posn p))
+                                 (- BG-HEIGHT (/ PADDLE-HEIGHT 2)))
+                      0
+                      (paddle-score p))]
+        [else
+         (make-paddle (make-posn (posn-x (paddle-posn p))
+                                 (+ (posn-y (paddle-posn p))
+                                    (* s
+                                       (paddle-ydir p))))
+                      (paddle-ydir p)
+                      (paddle-score p))]))
+
+
+;; Paddle Ball Integer -> Paddle
+;; Make enemy paddle follow the ball.
+(check-expect (move-enemy-ai (make-paddle (make-posn ENEMY-LINE 200)
+                                          1 0)
+                             (make-ball (make-posn XPOS-S 260)
+                                        (make-dirn 1 1))
+                             EPAD-SPEED)
+              (make-paddle (make-posn ENEMY-LINE (+ 200 (* EPAD-SPEED 1)))
+                           1 0))
+(check-expect (move-enemy-ai (make-paddle (make-posn ENEMY-LINE 200)
+                                          1 0)
+                             (make-ball (make-posn XPOS-S 140)
+                                        (make-dirn 1 -1))
+                             EPAD-SPEED)
+              (make-paddle (make-posn ENEMY-LINE (+ 200 (* EPAD-SPEED -1)))
+                           -1 0))
+(check-expect (move-enemy-ai (make-paddle (make-posn USER-LINE 200)
+                                          1 0)
+                             (make-ball (make-posn XPOS-S 200)
+                                        (make-dirn 1 1))
+                             EPAD-SPEED)
+              (make-paddle (make-posn USER-LINE 200)
                            1 0))
 
-;(define (move-paddle p s) p)
+;(define (move-enemy-ai p b s) p)
 
-(define (move-paddle p s)
-  (make-paddle (make-posn (posn-x (paddle-posn p))
-                          (+ (posn-y (paddle-posn p))
-                             (* s
-                                (paddle-ydir p))))
-               (paddle-ydir p)
-               (paddle-score p)))
+(define (move-enemy-ai p b s)
+  (cond [(< (- (posn-y (paddle-posn p))
+               (posn-y (ball-posn b)))
+            (- (/ PADDLE-HEIGHT 4)))
+         (make-paddle (make-posn (posn-x (paddle-posn p))
+                                 (+ (posn-y (paddle-posn p))
+                                    (* EPAD-SPEED 1)))
+                      1
+                      (paddle-score p))]
+        [(> (- (posn-y (paddle-posn p))
+               (posn-y (ball-posn b)))
+            (/ PADDLE-HEIGHT 4))
+         (make-paddle (make-posn (posn-x (paddle-posn p))
+                                 (+ (posn-y (paddle-posn p))
+                                    (* EPAD-SPEED -1)))
+                      -1
+                      (paddle-score p))]
+        [else
+         p]))
 
 
-;; !!!
-;; make ball change direction when hit by either paddle or screen edges
-;; Ball Position -> Ball
-;; Move ball b by given integer p.
+;; Ball Paddle Paddle Position -> Ball
+;; Move ball b by given integer p, and make it bounce from
+;; the top side, bottom side, and both paddles.
 (check-expect (move-ball (make-ball (make-posn XPOS-S YPOS-S)
                                     (make-dirn 1 -1))
+                         (make-paddle (make-posn USER-LINE YPOS-S)
+                                      -1 0)
+                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                      1 0)
                          (make-posn BALL-SPEED BALL-SPEED))
               (make-ball (make-posn (+ XPOS-S
                                        (* BALL-SPEED 1))
                                     (+ YPOS-S
                                        (* BALL-SPEED -1)))
                          (make-dirn 1 -1)))
+(check-expect (move-ball (make-ball (make-posn 200 0)
+                                    (make-dirn 1 -1))
+                         (make-paddle (make-posn USER-LINE YPOS-S)
+                                      -1 0)
+                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                      1 0)
+                         (make-posn BALL-SPEED BALL-SPEED))
+              (make-ball (make-posn 200 0)
+                         (make-dirn 1 (* -1 -1))))
+(check-expect (move-ball (make-ball (make-posn 210 BG-HEIGHT)
+                                    (make-dirn -1 1))
+                         (make-paddle (make-posn USER-LINE YPOS-S)
+                                      -1 0)
+                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                      1 0)
+                         (make-posn BALL-SPEED BALL-SPEED))
+              (make-ball (make-posn 210 BG-HEIGHT)
+                         (make-dirn -1 (* 1 -1))))
+(check-expect (move-ball (make-ball (make-posn USER-LINE YPOS-S)
+                                    (make-dirn -1 -1))
+                         (make-paddle (make-posn USER-LINE YPOS-S)
+                                      -1 0)
+                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                      1 0)
+                         (make-posn BALL-SPEED BALL-SPEED))
+              (make-ball (make-posn USER-LINE YPOS-S)
+                         (make-dirn (* -1 -1) -1)))
+(check-expect (move-ball (make-ball (make-posn ENEMY-LINE YPOS-S)
+                                    (make-dirn 1 1))
+                         (make-paddle (make-posn USER-LINE YPOS-S)
+                                      -1 0)
+                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                      1 0)
+                         (make-posn BALL-SPEED BALL-SPEED))
+              (make-ball (make-posn ENEMY-LINE YPOS-S)
+                         (make-dirn (* 1 -1) 1)))
 
-;(define (move-ball b p) b)
+;(define (move-ball b u e p) b)
 
-(define (move-ball b p)
-  (make-ball (make-posn (+ (posn-x (ball-posn b))
-                           (* (posn-x p)
-                              (dirn-xd (ball-dirn b))))
-                        (+ (posn-y (ball-posn b))
-                           (* (posn-y p)
-                              (dirn-yd (ball-dirn b)))))
-             (ball-dirn b)))
+(define (move-ball b u e p)
+  (cond [(ball-hit-fc? b)
+         (make-ball (ball-posn b)
+                    (make-dirn (dirn-xd (ball-dirn b))
+                               (* (dirn-yd (ball-dirn b)) -1)))]
+        [(or (ball-hit-paddle? b u)
+             (ball-hit-paddle? b e))
+         (make-ball (ball-posn b)
+                    (make-dirn (* (dirn-xd (ball-dirn b)) -1)
+                               (dirn-yd (ball-dirn b))))]
+        [else
+         (make-ball (make-posn (+ (posn-x (ball-posn b))
+                                  (* (posn-x p)
+                                     (dirn-xd (ball-dirn b))))
+                               (+ (posn-y (ball-posn b))
+                                  (* (posn-y p)
+                                     (dirn-yd (ball-dirn b)))))
+                    (ball-dirn b))]))
+
+
+;; Ball -> Boolean
+;; Return #true if the ball hits the floor or the ceiling.
+;; Else, return #false.
+(check-expect (ball-hit-fc? (make-ball (make-posn XPOS-S YPOS-S)
+                                       (make-dirn -1 1)))
+              #false)
+(check-expect (ball-hit-fc? (make-ball (make-posn 200 0)
+                                       (make-dirn 1 -1)))
+              #true)
+(check-expect (ball-hit-fc? (make-ball (make-posn 200 BG-HEIGHT)
+                                       (make-dirn -1 1)))
+              #true)
+
+;(define (ball-hit-fc? b) #false)
+
+(define (ball-hit-fc? b)
+  (or (and (<= (abs (- (posn-y (ball-posn b)) 0))
+               BALL-RADIUS)
+           (= (dirn-yd (ball-dirn b)) -1))
+      (and (<= (abs (- (posn-y (ball-posn b)) BG-HEIGHT))
+               BALL-RADIUS)
+           (= (dirn-yd (ball-dirn b)) 1))))
+
+
+;; Ball Paddle -> Boolean
+;; Return #true if the ball collided with the paddle. Else, return #false.
+(check-expect (ball-hit-paddle? (make-ball (make-posn XPOS-S YPOS-S)
+                                           (make-dirn 1 -1))
+                                (make-paddle (make-posn USER-LINE YPOS-S)
+                                             -1 0))
+              #false)
+(check-expect (ball-hit-paddle? (make-ball (make-posn XPOS-S YPOS-S)
+                                           (make-dirn 1 -1))
+                                (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                             1 0))
+              #false)
+(check-expect (ball-hit-paddle? (make-ball (make-posn (+ USER-LINE 10)
+                                                      (- YPOS-S 44))
+                                           (make-dirn -1 -1))
+                                (make-paddle (make-posn USER-LINE YPOS-S)
+                                             -1 0))
+              #true)
+(check-expect (ball-hit-paddle? (make-ball (make-posn (- ENEMY-LINE 10)
+                                                      (- YPOS-S 43))
+                                           (make-dirn 1 -1))
+                                (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                             1 0))
+              #true)
+
+;(define (ball-hit-paddle? b p) #false)
+
+(define (ball-hit-paddle? b p)
+  (cond [(and (or (and (= (posn-x (paddle-posn p)) USER-LINE)
+                       (= (dirn-xd (ball-dirn b)) -1))
+                  (and (= (posn-x (paddle-posn p)) ENEMY-LINE)
+                       (= (dirn-xd (ball-dirn b)) 1)))
+              (<= (abs (- (posn-x (paddle-posn p))
+                          (posn-x (ball-posn b))))
+                  (/ PADDLE-WIDTH 2))
+              (<= (abs (- (posn-y (paddle-posn p))
+                          (posn-y (ball-posn b))))
+                  (/ PADDLE-HEIGHT 2)))
+         #true]
+        [else
+         #false]))
 
 
 ;; Game -> Game
@@ -364,7 +569,6 @@
                         (make-dirn (random-ref (list -1 1))
                                    (random-ref (list -1 1))))))
 
-;; !!! set-score is broken, something about paddle-lost?
 ;; Game -> Game
 ;; Handle scoring after match end.
 (check-random (set-score (make-game (make-paddle (make-posn USER-LINE 450)
@@ -483,11 +687,10 @@
 ;(define (goal? b) #false)
 
 (define (goal? b)
-  (or (>= (posn-x (ball-posn b)) ENEMY-HIT)
-      (<= (posn-x (ball-posn b)) USER-HIT)))
+  (or (>= (posn-x (ball-posn b)) ENEMY-LINE)
+      (<= (posn-x (ball-posn b)) USER-LINE)))
 
 
-;; !!! render the player scores render-score
 ;; Game -> Image
 ;; Render all the game elements on screen.
 (check-expect (draw (make-game (make-paddle (make-posn USER-LINE YPOS-S)
@@ -513,19 +716,71 @@
 ;(define (draw g) empty-image)
 
 (define (draw g)
-  (render-image (text (string-append (number->string (paddle-score (game-user g)))
-                                     SCORE-DIVIDER
-                                     (number->string (paddle-score (game-enemy g))))
-                      SCORE-SIZE
-                      SCORE-COLOR)
-                (make-posn SCORE-XP SCORE-YP)
-                (render-image USER-PADDLE
-                              (paddle-posn (game-user g))
-                              (render-image ENEMY-PADDLE
-                                            (paddle-posn (game-enemy g))
-                                            (render-image BALL
-                                                          (ball-posn (game-ball g))
-                                                          BACKGROUND)))))
+  (display-winner g
+                  (render-image (text (string-append (number->string (paddle-score (game-user g)))
+                                                     SCORE-DIVIDER
+                                                     (number->string (paddle-score (game-enemy g))))
+                                      SCORE-SIZE
+                                      SCORE-COLOR)
+                                (make-posn SCORE-XP SCORE-YP)
+                                (render-image USER-PADDLE
+                                              (paddle-posn (game-user g))
+                                              (render-image ENEMY-PADDLE
+                                                            (paddle-posn (game-enemy g))
+                                                            (render-image BALL
+                                                                          (ball-posn (game-ball g))
+                                                                          BACKGROUND))))))
+
+
+;; Game Image -> Image
+;; Display an image displaying the scores and, if applicable,
+;; declare the winner of the game of Pong.
+(check-expect (display-winner (make-game (make-paddle (make-posn USER-LINE YPOS-S)
+                                                      -1 0)
+                                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                                      1 0)
+                                         (make-ball (make-posn XPOS-S YPOS-S)
+                                                    (make-dirn 1 -1)))
+                              BACKGROUND)
+              BACKGROUND)
+(check-expect (display-winner (make-game (make-paddle (make-posn USER-LINE YPOS-S)
+                                                      -1 9)
+                                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                                      1 0)
+                                         (make-ball (make-posn XPOS-S YPOS-S)
+                                                    (make-dirn 1 -1)))
+                              BACKGROUND)
+              (render-image (text "You won! :)"
+                                  MSG-SIZE MSG-COLOR)
+                            (make-posn MSG-XP MSG-YP)
+                            BACKGROUND))
+(check-expect (display-winner (make-game (make-paddle (make-posn USER-LINE YPOS-S)
+                                                      -1 0)
+                                         (make-paddle (make-posn ENEMY-LINE YPOS-S)
+                                                      1 9)
+                                         (make-ball (make-posn XPOS-S YPOS-S)
+                                                    (make-dirn 1 -1)))
+                              BACKGROUND)
+              (render-image (text "Enemy won. :("
+                                  MSG-SIZE MSG-COLOR)
+                            (make-posn MSG-XP MSG-YP)
+                            BACKGROUND))
+
+;(define (display-winner g i) i)
+
+(define (display-winner g i)
+  (cond [(= (paddle-score (game-enemy g)) WIN-SCORE)
+         (render-image (text "Enemy won. :("
+                             MSG-SIZE MSG-COLOR)
+                       (make-posn MSG-XP MSG-YP)
+                       i)]
+        [(= (paddle-score (game-user g)) WIN-SCORE)
+         (render-image (text "You won! :)"
+                             MSG-SIZE MSG-COLOR)
+                       (make-posn MSG-XP MSG-YP)
+                       i)]
+        [else
+         i]))
 
 
 ;; Image Position Image -> Image
@@ -555,41 +810,6 @@
   (place-image i
                (posn-x p) (posn-y p)
                bg))
-
-
-;(define-struct game (user enemy ball))
-;; Game -> Boolean
-;; Signals the win condition and end the game.
-(check-expect (end? (make-game (make-paddle (make-posn USER-LINE YPOS-S)
-                                            1
-                                            5)
-                               (make-paddle (make-posn ENEMY-LINE YPOS-S)
-                                            1
-                                            4)
-                               (make-ball (make-posn USER-LINE 50)
-                                          (make-dirn -1 -1)))) #false)
-(check-expect (end? (make-game (make-paddle (make-posn USER-LINE YPOS-S)
-                                            1
-                                            2)
-                               (make-paddle (make-posn ENEMY-LINE YPOS-S)
-                                            1
-                                            9)
-                               (make-ball (make-posn USER-LINE 50)
-                                          (make-dirn -1 -1)))) #true)
-(check-expect (end? (make-game (make-paddle (make-posn USER-LINE YPOS-S)
-                                            1
-                                            9)
-                               (make-paddle (make-posn ENEMY-LINE YPOS-S)
-                                            1
-                                            4)
-                               (make-ball (make-posn ENEMY-LINE 50)
-                                          (make-dirn 1 1)))) #true)
-
-;(define (end? g) #false)
-
-(define (end? g)
-  (or (= (paddle-score (game-user g)) 9)
-      (= (paddle-score (game-enemy g)) 9)))
 
 
 ;; Game KeyEvent -> Game
