@@ -4,9 +4,13 @@ This is my proof of coursework for Programming Foundations 1 - Systematic Progra
 
 The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 
-## Portfolio Project
+## Portfolio Projects
 
 See [Pong](./htc/portfolio_project_1-pong/domain_analysis.md).
+
+## Assigned Projects
+
+See [Space Invaders](./htc/project_1-space_invaders/)
 
 ## Progress
 
@@ -25,7 +29,7 @@ See [Pong](./htc/portfolio_project_1-pong/domain_analysis.md).
 11. ~~[Project: Space Invaders](./htc/project_1-space_invaders/)~~
 12. ~~[7: Mutual Reference](./htc/07-mutual_reference/)~~
 13. ~~[8a: Two One-of Types](./htc/08a-two_one_of_types/)~~
-14. 8b: Local
+14. ~~[8b: Local](./htc/08b-local/)~~
 15. 9: Abstraction
 16. 10a: Generative Recursion
 17. 10b: Search
