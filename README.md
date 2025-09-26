@@ -31,7 +31,7 @@ See [Space Invaders](./htc/project_1-space_invaders/)
 13. ~~[8a: Two One-of Types](./htc/08a-two_one_of_types/)~~
 14. ~~[8b: Local](./htc/08b-local/)~~
 15. ~~[9: Abstraction](./htc/09-abstraction/)~~
-16. 10a: Generative Recursion
+16. ~~[10a: Generative Recursion](./htc/10a-generative_recursion/)~~
 17. 10b: Search
 18. 11: Accumulators
 19. 12: Graphs
