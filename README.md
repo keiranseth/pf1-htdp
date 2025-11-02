@@ -33,7 +33,7 @@ See [Space Invaders](./htc/project_1-space_invaders/)
 15. ~~[9: Abstraction](./htc/09-abstraction/)~~
 16. ~~[10a: Generative Recursion](./htc/10a-generative_recursion/)~~
 17. ~~[10b: Search](./htc/10b-search/)~~
-18. 11: Accumulators
+18. ~~[11: Accumulators](./htc/11-accumulators/)~~
 19. 12: Graphs
 20. Project: TA Scheduler
 
