@@ -8,9 +8,19 @@ The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 
 See [Pong](./htc/portfolio_project_1-pong/domain_analysis.md).
 
+See Tents and Trees Solver.
+
+See Missionaries and Cannibals Solver.
+
+See Merge Sort.
+
+See Selection Sort.
+
 ## 🚀 Assigned Projects
 
 See [Space Invaders](./htc/project_1-space_invaders/)
+
+See TA Scheduler.
 
 ## Progress
 
@@ -34,7 +44,7 @@ See [Space Invaders](./htc/project_1-space_invaders/)
 16. ~~[10a: Generative Recursion](./htc/10a-generative_recursion/)~~
 17. ~~[10b: Search](./htc/10b-search/)~~
 18. ~~[11: Accumulators](./htc/11-accumulators/)~~
-19. 12: Graphs
+19. ~~[12: Graphs](./htc/12-graphs/)~~
 20. Project: TA Scheduler
 
 ### HTDP
