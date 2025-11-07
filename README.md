@@ -8,19 +8,13 @@ The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 
 See [Pong](./htc/portfolio_project_1-pong/domain_analysis.md).
 
-See Tents and Trees Solver.
-
 See Missionaries and Cannibals Solver.
-
-See Merge Sort.
-
-See Selection Sort.
 
 ## 🚀 Assigned Projects
 
-See [Space Invaders](./htc/project_1-space_invaders/)
+See [Space Invaders](./htc/project_1-space_invaders/space_invaders.md)
 
-See TA Scheduler.
+See [TA Scheduler](./htc/project_2-ta_solver/ta_solver.md).
 
 ## Progress
 
@@ -45,23 +39,4 @@ See TA Scheduler.
 17. ~~[10b: Search](./htc/10b-search/)~~
 18. ~~[11: Accumulators](./htc/11-accumulators/)~~
 19. ~~[12: Graphs](./htc/12-graphs/)~~
-20. Project: TA Scheduler
-
-### HTDP
-
-1. [Preface](https://htdp.org/2024-11-6/Book/part_preface.html)
-2. [Prologue. How to Program](https://htdp.org/2024-11-6/Book/part_prologue.html)
-3. [I. Fixed-Size Data](https://htdp.org/2024-11-6/Book/part_one.html)
-4. [IM1. Beginning Student Language](https://htdp.org/2024-11-6/Book/i1-2.html)
-5. [II. Arbitrarily Large Data](https://htdp.org/2024-11-6/Book/part_two.html)
-6. [IM2. Quote, Unquote](https://htdp.org/2024-11-6/Book/i2-3.html)
-7. [III. Abstraction](https://htdp.org/2024-11-6/Book/part_three.html)
-8. [IM3. Scope and Abstraction](https://htdp.org/2024-11-6/Book/i3-4.html)
-9. [IV. Intertwined Data](https://htdp.org/2024-11-6/Book/part_four.html)
-10. [IM4. The Nature of Numbers](https://htdp.org/2024-11-6/Book/i4-5.html)
-11. [V. Generative Recursion](https://htdp.org/2024-11-6/Book/part_five.html)
-12. [IM5. The Cost of Computation](https://htdp.org/2024-11-6/Book/i5-6.html)
-13. [VI. Accumulators](https://htdp.org/2024-11-6/Book/part_six.html)
-14. [VII. Changing the State of Variables](https://htdp.org/2003-09-26/Book/curriculum-Z-H-42.html#node_part_VII)
-15. [VIII. Changing Compound Values](https://htdp.org/2003-09-26/Book/curriculum-Z-H-48.html#node_part_VIII)
-16. [Epilogue: Moving On](https://htdp.org/2024-11-6/Book/part_epilogue.html)
+20. ~~[Project: TA Scheduler](./htc/project_2-ta_solver/ta_solver.md)~~
