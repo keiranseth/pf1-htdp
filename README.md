@@ -8,7 +8,7 @@ The prerequisite of PF2 - CBPD is the completion of [HTC](#htc).
 
 See [Pong](./htc/portfolio_project_1-pong/domain_analysis.md).
 
-See [Missionaries and Cannibals Solver](./htc/portfolio_project_2-mac/information.md).
+See [Indigenous and Colonizers Solver](./htc/portfolio_project_2-mac/information.md).
 
 ## 🚀 Assigned Projects
 

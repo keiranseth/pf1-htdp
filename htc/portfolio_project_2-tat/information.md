@@ -1,12 +1,8 @@
-# Indigenous and Colonizers Solver
+# Tents and Trees Solver
 
-This portfolio project is an implementation of a classic river-crossing puzzle involving the Indigenous (the new Missionaries) and the Colonizers (the new Cannibals), interpreted as a search problem.
+This portfolio project is an implementation of a logic puzzle called [Tents and Trees](https://www.puzzle-tents.com/).
 
 After completing PF1, I still personally felt that there were not enough search problems in the course. To make sure that I learned the material, I'm implementing my own search problem with my own data definitions.
-
-Learn more about the puzzle [here](https://en.wikipedia.org/wiki/Missionaries_and_cannibals_problem).
-
-Read the [paper](https://arxiv.org/abs/2210.12269) discussing the variations of this puzzle.
 
 ## Implementation
 
